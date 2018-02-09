@@ -3,10 +3,11 @@ $(function() {
 
   window.Validator = function(val, rule) {
     /*检测需要执行哪个方法*/
-    this.is_valid = function(new_val) {
+    this.is_valid = function (new_val) {
       var key;
       val = new_val || val;
-/*如果不是必填项且用户未填写任何内容则直接判定为合法*/
+
+      /*如果不是必填项且用户未填写任何内容则直接判定为合法*/
       if(!rule.required && !val)
         return true;
         /*防止重复检查*/
