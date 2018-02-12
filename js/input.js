@@ -3,6 +3,7 @@ $(function() {
 
   window.Input = function(selector) {
     var $ele
+        ,$error_ele//存错误信息
         ,me = this
         ,rule =
         {
@@ -18,6 +19,7 @@ $(function() {
 
     function init(){
       find_ele();
+      get_error_ele();
       parserule();
       me.load_validator();
       listen();
@@ -25,9 +27,20 @@ $(function() {
 
     function listen() {
       $ele.on('keyup',function() {
-        var r = me.validator.is_valid(me.get_val());
-        console.log('valid:',r);
+        var valid = me.validator.is_valid(me.get_val());
+        if(valid)
+          $error_ele.hide();
+        else
+          $error_ele.show();
       })
+    }
+/*用于显示错误*/
+    function get_error_ele() {
+      $error_ele = $(get_error_selector());
+    }
+
+    function get_error_selector() {
+      return '#' + $ele.attr('name') + '-input-error';
     }
 
     function find_ele() {

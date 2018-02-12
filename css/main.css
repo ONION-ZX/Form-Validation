@@ -27,4 +27,5 @@ h1 {
 }
 .input-error {
   color: #56000a;
+  display: none;
 }
